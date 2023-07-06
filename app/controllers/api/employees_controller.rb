@@ -27,7 +27,7 @@ class Api::EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:name, :email, :password, :date_of_birth, :gender, :contact, :designation)
+    params.require(:employee).permit(:name, :email, :password, :date_of_birth, :gender, :contact, :designation, :department_id)
   end
 
   def find_employee
