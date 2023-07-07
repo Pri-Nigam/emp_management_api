@@ -10,11 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_06_120321) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_07_060308) do
   create_table "departments", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "designations", force: :cascade do |t|
+    t.string "title"
+    t.text "description"
+    t.integer "department_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["department_id"], name: "index_designations_on_department_id"
   end
 
   create_table "employees", force: :cascade do |t|
@@ -29,10 +38,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_06_120321) do
     t.date "date_of_birth"
     t.string "gender"
     t.string "contact"
-    t.string "designation"
-    t.integer "department_id"
+    t.integer "designation_id", null: false
+    t.index ["designation_id"], name: "index_employees_on_designation_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "designations", "departments"
+  add_foreign_key "employees", "designations"
 end
