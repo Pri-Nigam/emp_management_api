@@ -12,7 +12,9 @@ class Api::EmployeesController < ApplicationController
 
   def create
     employee = Employee.new(employee_params)
-    employee.save
+    if employee.save
+      render json: employee, status: :created
+    end
   end
 
   def update
@@ -27,7 +29,7 @@ class Api::EmployeesController < ApplicationController
   private
 
   def employee_params
-    params.require(:employee).permit(:name, :email, :password, :date_of_birth, :gender, :contact, :designation)
+    params.require(:employee).permit(:name, :email, :password, :date_of_birth, :gender, :contact, :designation, :department_id)
   end
 
   def find_employee
