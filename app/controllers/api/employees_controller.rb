@@ -2,8 +2,8 @@ class Api::EmployeesController < ApplicationController
   before_action :find_employee, only: [:show, :update, :destroy]
 
   def index
-    @employees = Employee.all
-    render json: { employees: @employees }
+    employees = Employee.all
+    render json: { employees: employees }
   end
 
   def show
@@ -35,9 +35,9 @@ class Api::EmployeesController < ApplicationController
   def department_employees
     department = Department.find_by(name: params[:name])
     designation = department.designations.find_by(title: params["\"title\n\""])
-    employee = designation.employees.all
+    employees = designation.employees.all
 
-    render json: employee
+    render json: employees
   end
 
   private
@@ -49,5 +49,4 @@ class Api::EmployeesController < ApplicationController
   def find_employee
     @employee = Employee.find(params[:id])
   end
-
 end
