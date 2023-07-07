@@ -12,7 +12,9 @@ class Api::EmployeesController < ApplicationController
 
   def create
     employee = Employee.new(employee_params)
-    employee.save
+    if employee.save
+      render json: employee, status: :created
+    end
   end
 
   def update
