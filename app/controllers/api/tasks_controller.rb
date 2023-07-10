@@ -12,7 +12,6 @@ class Api::TasksController < ApplicationController
   end
 
   def create
-    byebug
     task = @employee.tasks.create(task_params)
     if task
       render json: task, status: :created
