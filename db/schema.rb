@@ -11,10 +11,13 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_07_10_101102) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "attendances", force: :cascade do |t|
     t.datetime "check_in"
     t.datetime "check_out"
-    t.integer "employee_id", null: false
+    t.bigint "employee_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["employee_id"], name: "index_attendances_on_employee_id"
@@ -29,7 +32,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_101102) do
   create_table "designations", force: :cascade do |t|
     t.string "title"
     t.text "description"
-    t.integer "department_id", null: false
+    t.bigint "department_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["department_id"], name: "index_designations_on_department_id"
@@ -47,15 +50,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_10_101102) do
     t.date "date_of_birth"
     t.string "gender"
     t.string "contact"
-    t.integer "designation_id", null: false
+    t.bigint "designation_id", null: false
     t.index ["designation_id"], name: "index_employees_on_designation_id"
     t.index ["email"], name: "index_employees_on_email", unique: true
     t.index ["reset_password_token"], name: "index_employees_on_reset_password_token", unique: true
   end
 
   create_table "employees_tasks", id: false, force: :cascade do |t|
-    t.integer "employee_id", null: false
-    t.integer "task_id", null: false
+    t.bigint "employee_id", null: false
+    t.bigint "task_id", null: false
   end
 
   create_table "tasks", force: :cascade do |t|
