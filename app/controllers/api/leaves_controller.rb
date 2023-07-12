@@ -12,8 +12,8 @@ class Api::LeavesController < ApplicationController
   end
 
   def create
-    leave = @employee.leaves.create(leave_params)
-    if leave
+    leave = @employee.leaves.new(leave_params)
+    if leave.save
       render json: leave, status: :created
     else
       render json: leave.errors.messages
