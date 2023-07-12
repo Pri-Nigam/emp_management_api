@@ -7,7 +7,7 @@ class Api::AttendancesController < ApplicationController
   end
 
   def show
-    date = Date.parse(params[:date]) || Date.today
+    date = Date.parse(params[:date])
     attendance = @employee.attendances.where(check_in: date.beginning_of_day..date.end_of_day)
     total_hours = attendance.map(&:total_hours)[0]
     render json: { attendance: attendance, total_hours: total_hours }
