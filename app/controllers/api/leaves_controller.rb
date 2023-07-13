@@ -4,7 +4,7 @@ class Api::LeavesController < ApplicationController
 
   def index
     leaves = @employee.leaves.all
-    render json: { leaves: leaves }
+    render json: leaves
   end
 
   def show

@@ -3,11 +3,11 @@ class Api::EmployeesController < ApplicationController
 
   def index
     employees = Employee.all
-    render json: { employees: employees }
+    render json: employees
   end
 
   def show
-    render json: @employee
+    render json: @employee, each_serializer: EmployeeSerializer
   end
 
   def create
@@ -34,7 +34,7 @@ class Api::EmployeesController < ApplicationController
 
   def department_employees
     department = Department.find_by(name: params[:name])
-    designation = department.designations.find_by(title: params["\"title\n\""])
+    designation = department.designations.find_by(title: params[:title])
     employees = designation.employees.all
 
     render json: employees

@@ -4,7 +4,7 @@ class Api::TasksController < ApplicationController
 
   def index
     tasks =  @employee.tasks.all
-    render json: { tasks: tasks }
+    render json: tasks
   end
 
   def show

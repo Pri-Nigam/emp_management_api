@@ -3,7 +3,7 @@ class Api::AttendancesController < ApplicationController
   
   def index
     attendances = @employee.attendances
-    render json: { attendances: attendances }
+    render json: attendances
   end
 
   def show
