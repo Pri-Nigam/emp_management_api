@@ -9,6 +9,12 @@ Rails.application.routes.draw do
       resources :tasks
       resources :attendances, except: :show
       resources :leaves
+      resources :salaries do
+        collection do
+          get 'monthly_salary'
+          get 'annual_salary'
+        end
+      end
     end
   end
 end

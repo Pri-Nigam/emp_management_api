@@ -56,6 +56,6 @@ class Api::LeavesController < ApplicationController
   end
 
   def leave_params
-    params.require(:leave).permit(:from_date, :to_date, :from_session, :to_session, :mail_to, :reason, :leave_type, :status)
+    params.require(:leave).permit(:from_date, :to_date, :from_session, :to_session, :mail_to, :reason, :leave_type)
   end
 end

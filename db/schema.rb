@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_11_112640) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_13_071653) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -76,6 +76,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_112640) do
     t.index ["employee_id"], name: "index_leaves_on_employee_id"
   end
 
+  create_table "salaries", force: :cascade do |t|
+    t.bigint "designation_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "basic_salary"
+    t.index ["designation_id"], name: "index_salaries_on_designation_id"
+  end
+
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -89,4 +97,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_07_11_112640) do
   add_foreign_key "designations", "departments"
   add_foreign_key "employees", "designations"
   add_foreign_key "leaves", "employees"
+  add_foreign_key "salaries", "designations"
 end
