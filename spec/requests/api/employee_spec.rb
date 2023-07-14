@@ -9,7 +9,6 @@ RSpec.describe "Employees", type: :request do
       get "/api/employees"
 
       expect(response).to have_http_status(200)
-
       employees = JSON.parse(response.body)
     end
   end
