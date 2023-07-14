@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :salary do
-    designation { nil }
+    designation 
   end
 end
