@@ -1,8 +1,8 @@
 FactoryBot.define do
   factory :task do
-    title { "MyString" }
-    description { "MyText" }
-    status { "MyString" }
-    duedate { "2023-07-10" }
+    title { Faker::Lorem.sentence }
+    description { Faker::Lorem.paragraph }
+    status { Faker::Lorem.word }
+    duedate { Faker::Date.forward(days: 7) }
   end
 end
